@@ -6,23 +6,25 @@
     
 
     
-    <title>Hello World | 个人博客</title>
+    <title>使用 Jenkins 自动编译部署 web 应用 | 个人博客</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="原文地址 https://blog.csdn.net/gavid0124/article/details/53463831   使用 Jenkins 自动编译部署 web 应用写在前面初步接触持续集成自动化过程，本篇主要介绍基于 Jenkins 实现持续集成的方式，通过案例介绍线上自动编译及部署的配置过程 持续集成 持续集成是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/01/02/hello-world/index.html">
+<meta property="og:title" content="使用 Jenkins 自动编译部署 web 应用">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/使用 Jenkins 自动编译部署 web 应用/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="原文地址 https://blog.csdn.net/gavid0124/article/details/53463831   使用 Jenkins 自动编译部署 web 应用写在前面初步接触持续集成自动化过程，本篇主要介绍基于 Jenkins 实现持续集成的方式，通过案例介绍线上自动编译及部署的配置过程 持续集成 持续集成是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-02T07:48:03.879Z">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235339613-839614360.png">
+<meta property="og:updated_time" content="2019-01-03T01:48:19.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="使用 Jenkins 自动编译部署 web 应用">
+<meta name="twitter:description" content="原文地址 https://blog.csdn.net/gavid0124/article/details/53463831   使用 Jenkins 自动编译部署 web 应用写在前面初步接触持续集成自动化过程，本篇主要介绍基于 Jenkins 实现持续集成的方式，通过案例介绍线上自动编译及部署的配置过程 持续集成 持续集成是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235339613-839614360.png">
     
 
     
@@ -129,19 +131,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    未分类
+    <a class="page-title-link" href="/categories/jenkins/">jenkins</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-hello-world" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+                            <article id="post-使用 Jenkins 自动编译部署 web 应用" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Hello World
+        使用 Jenkins 自动编译部署 web 应用
         </h1>
     
 
@@ -151,8 +153,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2019/01/02/hello-world/" class="article-date">
-            <time datetime="2019-01-02T10:10:06.767Z" itemprop="datePublished">2019-01-02</time>
+        <a href="/2019/01/03/使用 Jenkins 自动编译部署 web 应用/" class="article-date">
+            <time datetime="2019-01-03T01:41:34.540Z" itemprop="datePublished">2019-01-03</time>
         </a>
     </div>
 
@@ -163,15 +165,38 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <blockquote>
+<p>原文地址 <a href="https://blog.csdn.net/gavid0124/article/details/53463831" target="_blank" rel="noopener">https://blog.csdn.net/gavid0124/article/details/53463831</a> <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-5edb848729.css"></p>
+</blockquote>
+<h1 id="使用-Jenkins-自动编译部署-web-应用"><a href="#使用-Jenkins-自动编译部署-web-应用" class="headerlink" title="使用 Jenkins 自动编译部署 web 应用"></a><a></a><a href="http://www.cnblogs.com/hhhyaaon/p/5854977.html" target="_blank" rel="noopener">使用 Jenkins 自动编译部署 web 应用</a></h1><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a><a></a>写在前面</h1><p>初步接触持续集成自动化过程，本篇主要介绍基于 Jenkins 实现持续集成的方式，通过案例介绍线上自动编译及部署的配置过程</p>
+<h1 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a><a></a>持续集成</h1><blockquote>
+<p><a href="http://baike.baidu.com/link?url=8FOvoIYfLbreDpdQ_mZAOIT6BFf_g5xgBRS3A7_6lIBkit5PkYPmWQbvg1cDBFyLUwSXT1u-Z5FYJFnMuDvqtK" target="_blank" rel="noopener">持续集成</a>是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+</blockquote>
+<h1 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a><a></a>Jenkins</h1><blockquote>
+<p>Jenkins 是基于 Java 开发的一种持续集成工具，用于监控持续重复的工作，功能包括：<br>1、持续的软件版本发布 / 测试项目。<br>2、监控外部调用执行的工作。</p>
+</blockquote>
+<p>更多信息请戳<a href="https://jenkins.io/" target="_blank" rel="noopener">官网</a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a><a></a>安装</h1><p>网上有很多 Jenkins 安装配置教程，详情请戳 <a href="http://jingyan.baidu.com/article/d169e186525b50436711d850.html" target="_blank" rel="noopener">Jenkins 安装与配置</a></p>
+<h1 id="开始一个-DEMO"><a href="#开始一个-DEMO" class="headerlink" title="开始一个 DEMO"></a><a></a>开始一个 DEMO</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a><a></a>背景</h2><p>Jenkins 运行在 Linux 服务器上，尝试在此服务器上编译并部署一个 web 应用，编译过程需要 node 环境，编译后文件需 ssh 到测试服务器</p>
+<blockquote>
+<p>Jenkins 主要完成任务如下：<br>1、自动集成编译环境<br>2、线上编译应用<br>3、ssh 到目标环境并运行</p>
+</blockquote>
+<h2 id="新建一个-Job"><a href="#新建一个-Job" class="headerlink" title="新建一个 Job"></a><a></a>新建一个 Job</h2><p>登录进入 Jenkins，可以看到当前所有已集成项目的构建情况；<br>1、点击左上角的【新建】，创建一个新任务<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235339613-839614360.png" alt=""></p>
+<p>2、填写任务名称，构建的项目类型可根据实际情况进行选择，本次选择第一种即可<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235358551-634239946.png" alt=""></p>
+<p>3、选择完毕，点击【OK】，回到首页，发现创建的 Job 已显示在列表中</p>
+<h2 id="配置编译环境"><a href="#配置编译环境" class="headerlink" title="配置编译环境"></a><a></a>配置编译环境</h2><p>在这个过程中，我们需要为应用配置基于 node 的编译环境。<br>关于安装 node，一般可以下载执行文件安装或编译源码安装，而通过 Jenkins，我们则可考虑使用其提供的插件进行自动安装<br>1、选择系统管理 -&gt; 管理插件<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235416238-1128937650.png" alt=""></p>
+<p>2、可以看到，Jenkins 提供了丰富的插件供开发者使用，找到我们需要的 [NodeJS Plugin]，勾选后点击安装即可<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235430988-1203374563.png" alt=""></p>
+<p>3、安装完毕后，选择系统管理 -&gt;Global Tool Configuration，配置 node 下载及安装<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235453519-1210668528.png" alt=""></p>
+<p>4、进入后，撸到底部，发现全局可用工具中已经出现了 NodeJS 的配置项<br>5、插件支持多种方式安装 nodeJS，点击 [新建安装]，选择习惯的安装方式即可，此处给出从 node 官网下载并安装的配置<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235518754-867092832.png" alt=""></p>
+<p>6、保存完毕后，通过列表，进入刚刚新建的 Job，找到【构建环境】，勾选 Provide Node &amp; npm bin/ folder to PATH，选择刚刚添加的配置即可；此后当每次 build，都会首先执行环境构建，环境构建无误后，才会开始真正的构建过程<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235529504-2089755969.png" alt=""></p>
+<h2 id="配置构建过程"><a href="#配置构建过程" class="headerlink" title="配置构建过程"></a><a></a>配置构建过程</h2><p>在这个过程中，我们可以配置构建所需的参数，用来指明构建的位置（从哪个分支 / 哪个版本…）或其他一些状态；并通过命令执行构建。<br>1、通过列表进入 Job 详情，开始相关配置；<br>2、【General】一栏需要配置项目基础信息和一些构建需要的参数。选择【参数化构建】，此构建方式允许我们自定义构建过程中的参数。如下：配置一个<code>branch</code>参数，用于指明要构建的 git 分支<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235558894-927663944.png" alt=""></p>
+<p>3、【源码管理】一栏需要填写待构建项目的源码地址，其中【Branches to build】用来指明待构建的分支，当然，也可以选择某个提交号，同时此处也可以使用我们在 General 中定义变量（详细配置见输入框右侧的 [帮助] 按钮）<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235618113-1554448870.png" alt=""></p>
+<p>4、【构建】一栏需要输入相关命令来实现自动化构建，此过程在【环境构建】后，故我们可以编写如下代码执行构建<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235637363-223409008.png" alt=""></p>
+<p>5、线上编译完毕，下面将 build 完成的文件发送至目标环境（测试环境 / 生产环境）。继续在【构建】一栏中添加配置，指定目标环境相关信息；命令行配置 ssh 后的一些操作（解压文件，并删除压缩包）<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235659644-164147036.png" alt=""></p>
+<h2 id="执行构建"><a href="#执行构建" class="headerlink" title="执行构建"></a><a></a>执行构建</h2><p>至此，整个构建的配置算是基本完成，下面开始构建。<br>回到列表页，点击构建即可：<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235713441-878121008.png" alt=""></p>
+<p>可以看到构建历史列表中显示当前构建的进度<br><img src="http://images2015.cnblogs.com/blog/948198/201609/948198-20160908235722582-1114142336.png" alt=""></p>
+<p>点击左侧圆形按钮，即可进入控制台查看输出<br>构建完毕后，可以通过列表中的晴雨状态查看构建结果</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a><a></a>结语</h1><p>本篇简单介绍了基于 Jenkins 构建的过程，Jenkins 功能还有很多，会在之后的篇幅中陆续介绍。随着项目开发规模和复杂度不断增大，持续集成是一个必然的选择。</p>
 
         </div>
         <footer class="article-footer">
@@ -179,7 +204,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/02/hello-world/" data-id="cjqfybxop0006pkqld6kkjzmn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/03/使用 Jenkins 自动编译部署 web 应用/" data-id="cjqfybxp5000hpkqlqvjp0i1f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -249,17 +274,21 @@
             "@type": "Person",
             "name": "Andy"
         },
-        "headline": "Hello World",
-        "image": "http://yoursite.com",
+        "headline": "使用 Jenkins 自动编译部署 web 应用",
+        "image": "http://yoursite.comhttp://images2015.cnblogs.com/blog/948198/201609/948198-20160908235339613-839614360.png",
         "keywords": "",
-        "genre": "",
-        "datePublished": "2019-01-02",
-        "dateCreated": "2019-01-02",
-        "dateModified": "2019-01-02",
-        "url": "http://yoursite.com/2019/01/02/hello-world/",
-        "description": "Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick"
-        "wordCount": 144
+        "genre": "jenkins",
+        "datePublished": "2019-01-03",
+        "dateCreated": "2019-01-03",
+        "dateModified": "2019-01-03",
+        "url": "http://yoursite.com/2019/01/03/使用 Jenkins 自动编译部署 web 应用/",
+        "description": "
+原文地址 https://blog.csdn.net/gavid0124/article/details/53463831 
+
+使用 Jenkins 自动编译部署 web 应用写在前面初步接触持续集成自动化过程，本篇主要介绍基于 Jenkins 实现持续集成的方式，通过案例介绍线上自动编译及部署的配置过程
+持续集成
+持续集成是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至"
+        "wordCount": 182
     }
 </script>
 
@@ -314,16 +343,22 @@ Quick"
         
 <nav id="article-nav">
     
-        <a href="/2019/01/02/simpread-hexo 设置 关于 标签 分类 归档 - 阿甘的博客 - CSDN 博客/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/01/03/CentOS7 配置代理/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            hexo设置 关于 标签 分类 归档
+            CentOS7 配置代理
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
+    
+        <a href="/2019/01/03/持续集成①安装部署 jenkins 从 git 获取代码/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">持续集成①安装部署 jenkins 从 git 获取代码</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -521,7 +556,7 @@ Quick"
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2019/01/02/hello-world/';
+    var disqus_url = 'http://yoursite.com/2019/01/03/使用 Jenkins 自动编译部署 web 应用/';
     
     (function() {
     var dsq = document.createElement('script');

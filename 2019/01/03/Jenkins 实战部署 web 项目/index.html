@@ -6,23 +6,25 @@
     
 
     
-    <title>Hello World | 个人博客</title>
+    <title>Jenkins 实战部署 web 项目 | 个人博客</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="原文地址 https://blog.csdn.net/com542948180/article/details/70142215 1.linux 系统安装 Jenkins  (1) 官网下载 war 包: https://jenkins.io/download/ (2) 直接放入 Tomcat webapps 进行部署启动 2. 设置初始 user 3. 安装部署项目所需要的插件: (1)Ema">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/01/02/hello-world/index.html">
+<meta property="og:title" content="Jenkins 实战部署 web 项目">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/Jenkins 实战部署 web 项目/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="原文地址 https://blog.csdn.net/com542948180/article/details/70142215 1.linux 系统安装 Jenkins  (1) 官网下载 war 包: https://jenkins.io/download/ (2) 直接放入 Tomcat webapps 进行部署启动 2. 设置初始 user 3. 安装部署项目所需要的插件: (1)Ema">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-02T07:48:03.879Z">
+<meta property="og:image" content="http://sjqatst09/jenkins/static/be6de5a8/images/24x24/gear2.png">
+<meta property="og:updated_time" content="2019-01-03T01:44:02.424Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Jenkins 实战部署 web 项目">
+<meta name="twitter:description" content="原文地址 https://blog.csdn.net/com542948180/article/details/70142215 1.linux 系统安装 Jenkins  (1) 官网下载 war 包: https://jenkins.io/download/ (2) 直接放入 Tomcat webapps 进行部署启动 2. 设置初始 user 3. 安装部署项目所需要的插件: (1)Ema">
+<meta name="twitter:image" content="http://sjqatst09/jenkins/static/be6de5a8/images/24x24/gear2.png">
     
 
     
@@ -129,19 +131,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    未分类
+    <a class="page-title-link" href="/categories/jenkins/">jenkins</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-hello-world" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+                            <article id="post-Jenkins 实战部署 web 项目" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Hello World
+        Jenkins 实战部署 web 项目
         </h1>
     
 
@@ -151,8 +153,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2019/01/02/hello-world/" class="article-date">
-            <time datetime="2019-01-02T10:10:06.767Z" itemprop="datePublished">2019-01-02</time>
+        <a href="/2019/01/03/Jenkins 实战部署 web 项目/" class="article-date">
+            <time datetime="2019-01-03T01:41:34.565Z" itemprop="datePublished">2019-01-03</time>
         </a>
     </div>
 
@@ -163,15 +165,27 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <blockquote>
+<p>原文地址 <a href="https://blog.csdn.net/com542948180/article/details/70142215" target="_blank" rel="noopener">https://blog.csdn.net/com542948180/article/details/70142215</a> <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-5edb848729.css">1.linux 系统安装 Jenkins</p>
+</blockquote>
+<p>(1) 官网下载 war 包: <a href="https://jenkins.io/download/" target="_blank" rel="noopener">https://jenkins.io/download/</a></p>
+<p>(2) 直接放入 Tomcat webapps 进行部署启动</p>
+<p><strong>2. 设置初始 user</strong></p>
+<p><strong>3. 安装部署项目所需要的插件:</strong></p>
+<p>(1)Email 插件:</p>
+<p>|   | <a href="https://plugins.jenkins.io/email-ext" target="_blank" rel="noopener">Email Extension Plugin</a> |</p>
+<p>(2)Gradle 插件:</p>
+<p><a href="https://plugins.jenkins.io/gradle" target="_blank" rel="noopener">Gradle Plugin</a></p>
+<p>(3)SVN 插件:</p>
+<p>|   | <a href="https://plugins.jenkins.io/subversion" target="_blank" rel="noopener">Subversion Plug-in</a> |</p>
+<p>(4) SSH 插件:</p>
+<p>|   | <a href="https://plugins.jenkins.io/ssh-credentials" target="_blank" rel="noopener">SSH Credentials Plugin</a> |</p>
+<p><strong>4. 配置 email:</strong><a href="http://sjqatst09/jenkins/manage" target="_blank" rel="noopener"><img src="http://sjqatst09/jenkins/static/be6de5a8/images/24x24/gear2.png" alt=""></a> <a href="http://sjqatst09/jenkins/manage" target="_blank" rel="noopener">系统管理</a> -&gt; 系统设置:<img src="https://img-blog.csdn.net/20170412141825175?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>需要配置的参数: (1) 系统管理员邮件地址 : <a href="mailto:AutomationTest@XXX.com" target="_blank" rel="noopener">AutomationTest@XXX.com</a><br>(2)SMTP 服务器<br><strong>5. 配置 Gradle:</strong> <strong>step1:</strong> <img src="https://img-blog.csdn.net/20170412142232634?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""> <strong>step2:</strong> <img src="https://img-blog.csdn.net/20170412142439022?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><strong>6. 配置 JDK:</strong> <strong><img src="https://img-blog.csdn.net/20170412142745243?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></strong> <strong>7. 配置 SSH:</strong> 系统设置: <strong><img src="https://img-blog.csdn.net/20170412143219620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></strong> <strong>8. 开始部署你的第一个 Jenkins 项目:</strong> (1) <strong><img src="https://img-blog.csdn.net/20170412143421168?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></strong> (2) <img src="https://img-blog.csdn.net/20170412143624122?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>(3) 配置 SVN 地址 <img src="https://img-blog.csdn.net/20170412143817561?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>(4) 配置项目 code change build 周期和 check change 的周期: <img src="https://img-blog.csdn.net/20170412144208317?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>(5) 配置 gradle build 项目 war 包 <img src="https://img-blog.csdn.net/20170412144530930?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>(6) 配置 SSH, 把 jenkins 执行 gradle 打包好的 war 远程 copy 到 web app server 的 tomcat, 并且重启 tomcat, 最后设置 build 项目 email 通知的相关人员 email list <img src="https://img-blog.csdn.net/20170412150304315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY29tNTQyOTQ4MTgw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>完整 SSH Command:</p>
+<p>#!/bin/bashsshpass -p “password” scp /data/jenkins/workspace/XXXX/build/libs/qa<strong><em>.war username@sjqatstXX:/data/qateam/apache-tomcat-7.0.76/webapps;sshpass -p “password” ssh -o StrictHostKeyChecking=no username@sjqatstXX “sh /data/qateam/apache-tomcat-7.0.76/bin/shutdown.sh;rm -rf /data/qateam/apache-tomcat-7.0.76/webapps/qa</em></strong>; sh /data/qateam/apache-tomcat-7.0.76/bin/startup.sh”;</p>
+<p><strong>#!/bin/bash<br>sshpass -p “password” scp /data/jenkins/workspace/QA*</strong>/build/libs/qa<strong>*.war username</strong>@sjqatst<strong>:/data/qateam/apache-tomcat-7.0.76/webapps;<br>sshpass -p “password” ssh -o StrictHostKeyChecking=no username</strong>@sjqatst<strong> “sh /data/qateam/apache-tomcat-7.0.76/bin/shutdown.sh;rm -rf /data/qateam/apache-tomcat-7.0.76/webapps/qa*</strong>; sh /data/qateam/apache-tomcat-7.0.76/bin/startup.sh”;**</p>
+<p>(7) 点击 save 配置完毕</p>
+<p><strong>9. 配置完成, 点击 build 开始构建项目</strong></p>
+<p>#!/bin/bashsshpass -p “password” scp /data/jenkins/workspace/XXXX/build/libs/qa<strong><em>.war username@sjqatstXX:/data/qateam/apache-tomcat-7.0.76/webapps;sshpass -p “password” ssh -o StrictHostKeyChecking=no username@sjqatstXX “sh /data/qateam/apache-tomcat-7.0.76/bin/shutdown.sh;rm -rf /data/qateam/apache-tomcat-7.0.76/webapps/qa</em></strong>; sh /data/qateam/apache-tomcat-7.0.76/bin/startup.sh”;</p>
 
         </div>
         <footer class="article-footer">
@@ -179,7 +193,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/02/hello-world/" data-id="cjqfybxop0006pkqld6kkjzmn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/03/Jenkins 实战部署 web 项目/" data-id="cjqfybxol0004pkql3dnll9nx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -249,17 +263,23 @@
             "@type": "Person",
             "name": "Andy"
         },
-        "headline": "Hello World",
-        "image": "http://yoursite.com",
+        "headline": "Jenkins 实战部署 web 项目",
+        "image": "http://yoursite.comhttp://sjqatst09/jenkins/static/be6de5a8/images/24x24/gear2.png",
         "keywords": "",
-        "genre": "",
-        "datePublished": "2019-01-02",
-        "dateCreated": "2019-01-02",
-        "dateModified": "2019-01-02",
-        "url": "http://yoursite.com/2019/01/02/hello-world/",
-        "description": "Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick"
-        "wordCount": 144
+        "genre": "jenkins",
+        "datePublished": "2019-01-03",
+        "dateCreated": "2019-01-03",
+        "dateModified": "2019-01-03",
+        "url": "http://yoursite.com/2019/01/03/Jenkins 实战部署 web 项目/",
+        "description": "
+原文地址 https://blog.csdn.net/com542948180/article/details/70142215 1.linux 系统安装 Jenkins
+
+(1) 官网下载 war 包: https://jenkins.io/download/
+(2) 直接放入 Tomcat webapps 进行部署启动
+2. 设置初始 user
+3. 安装部署项目所需要的插件:
+(1)Ema"
+        "wordCount": 233
     }
 </script>
 
@@ -314,16 +334,22 @@ Quick"
         
 <nav id="article-nav">
     
-        <a href="/2019/01/02/simpread-hexo 设置 关于 标签 分类 归档 - 阿甘的博客 - CSDN 博客/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            hexo设置 关于 标签 分类 归档
+            jenkins 使用 Publish Over SSH 插件实现远程自动部署
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
+    
+        <a href="/2019/01/03/CentOS7 配置代理/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">CentOS7 配置代理</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -521,7 +547,7 @@ Quick"
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2019/01/02/hello-world/';
+    var disqus_url = 'http://yoursite.com/2019/01/03/Jenkins 实战部署 web 项目/';
     
     (function() {
     var dsq = document.createElement('script');

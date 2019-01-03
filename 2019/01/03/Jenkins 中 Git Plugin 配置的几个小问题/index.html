@@ -6,23 +6,25 @@
     
 
     
-    <title>Hello World | 个人博客</title>
+    <title>Jenkins 中 Git Plugin 配置的几个小问题 | 个人博客</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="原文地址 https://blog.csdn.net/csxiaoshui/article/details/49945265     最近持续集成出现了一些问题，翻出来看了一下，发现之前许多配置都有点问题，导致在新环境的配置中屡屡失败，经过一番测试总算配置成功。记录其中几个坑，主要是关于 Git 的一些配置，供日后查阅。   CI（Continuous Integration）持续集成其实是由一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/01/02/hello-world/index.html">
+<meta property="og:title" content="Jenkins 中 Git Plugin 配置的几个小问题">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="原文地址 https://blog.csdn.net/csxiaoshui/article/details/49945265     最近持续集成出现了一些问题，翻出来看了一下，发现之前许多配置都有点问题，导致在新环境的配置中屡屡失败，经过一番测试总算配置成功。记录其中几个坑，主要是关于 Git 的一些配置，供日后查阅。   CI（Continuous Integration）持续集成其实是由一">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-02T07:48:03.879Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20151120152425126">
+<meta property="og:updated_time" content="2019-01-03T01:45:36.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Jenkins 中 Git Plugin 配置的几个小问题">
+<meta name="twitter:description" content="原文地址 https://blog.csdn.net/csxiaoshui/article/details/49945265     最近持续集成出现了一些问题，翻出来看了一下，发现之前许多配置都有点问题，导致在新环境的配置中屡屡失败，经过一番测试总算配置成功。记录其中几个坑，主要是关于 Git 的一些配置，供日后查阅。   CI（Continuous Integration）持续集成其实是由一">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20151120152425126">
     
 
     
@@ -129,19 +131,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    未分类
+    <a class="page-title-link" href="/categories/jenkins/">jenkins</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-hello-world" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+                            <article id="post-Jenkins 中 Git Plugin 配置的几个小问题" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Hello World
+        Jenkins 中 Git Plugin 配置的几个小问题
         </h1>
     
 
@@ -151,8 +153,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2019/01/02/hello-world/" class="article-date">
-            <time datetime="2019-01-02T10:10:06.767Z" itemprop="datePublished">2019-01-02</time>
+        <a href="/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/" class="article-date">
+            <time datetime="2019-01-03T01:41:34.599Z" itemprop="datePublished">2019-01-03</time>
         </a>
     </div>
 
@@ -163,15 +165,31 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <blockquote>
+<p>原文地址 <a href="https://blog.csdn.net/csxiaoshui/article/details/49945265" target="_blank" rel="noopener">https://blog.csdn.net/csxiaoshui/article/details/49945265</a> <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-5edb848729.css"></p>
+</blockquote>
+<p>  最近持续集成出现了一些问题，翻出来看了一下，发现之前许多配置都有点问题，导致在新环境的配置中屡屡失败，经过一番测试总算配置成功。记录其中几个坑，主要是关于 Git 的一些配置，供日后查阅。</p>
+<p>  CI（Continuous Integration）持续集成其实是由一系列的最佳实践所构成，包括了源代码的版本控制和管理、自动化构建、自动化测试、代码审查、自动发行和部署、持续反馈等等，对于快速迭代的项目非常有效。在 CI 中比较常用的一个工具是 Jenkins（前身是 Hudson，由于版权原因更名为 Jenkins）。<br> 持续集成的第一步一般需要将源码从代码托管服务器下载下来，Jenkins 默认安装之后并没有支持 GIT 代码托管工具，需要安装一个对应的插件，可以安装 Git Plugin，关于 Git Plugin 的介绍可以参考：<a href="https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin</a><br>安装完成之后，当我们使用 Jenkins 创建项目之后，在填写好 Git 仓库地址之后，当执行构建操作的时候，会发现代码根本 clone 不下来，构建过程一直停在代码下载这一步，下面看一下如何解决这个问题，在此之前先介绍一些关于 GIT 与 SSH 等内容。</p>
+<ul>
+<li>TortoiseGIT</li>
+</ul>
+<p>在 Windows 系统下，使用较多的一个图形界面的 GIT 工具是 TortoiseGIT，在安装它的过程中，一般会出现下面的界面： <img src="https://img-blog.csdn.net/20151120152425126" alt=""></p>
+<p>安装程序让我们选择使用哪种 ssh 的客户端，TortoiseGIT 默认的客户端是 TortoiseGItPlink，如果我们选择这一项，那么当我们使用 Git 命令行 或者 使用 TortoiseGit 去 Clone 代码的时候，使用的并不是同一个客户端。如果选择的是下面的选项 OpenSSH，那么二者就是相同的，都是 OpenSSH 客户端。之所以提到这一点是因为这里的选择对后续我们设置 ssh key 的时候有点影响，当然究竟 TortoiseGit 使用哪一个 ssh 客户端，在安装完成之后也可以配置，具体的配置可以在 TortoiseGit 的 settings 中找到，如下图所示：<br><img src="https://img-blog.csdn.net/20151120153536061" alt=""></p>
+<ul>
+<li>SSH Key</li>
+</ul>
+<p>SSH 为 <a href="http://baike.baidu.com/view/2118359.htm" target="_blank" rel="noopener">Secure Shell</a> 的缩写，由 IETF 的网络工作小组（Network Working Group）所制定；SSH 为建立在应用层和传输层基础上的安全协议。SSH 是目前较可靠，专为<a href="http://baike.baidu.com/view/59099.htm" target="_blank" rel="noopener">远程登录</a>会话和其他网络服务提供安全性的协议。Git 代码可以通过 SSH 协议下载到本地，它提供两种方式：<br>1. 常规的基于密码的方式 2. 使用密钥的方式<br>当我们在 Jenkins 中使用 Git Plugin 插件的时候，不能使用基于密码的方式，使用这种方式会让代码 clone 过程一直卡住，实际上是 ssh 需要我们输入密码以便它能继续，但是在构建过程中根本没办法与它进行交互，输入密码，因此我们只能使用第二种方式<br>关于 ssh key 的产生，可以使用下面的方法：<br>1. 首先在 Git 客户端安装目录的 bin 文件夹中找到 ssh-keygen，这个工具是用来生成 ssh 的公钥和私钥的，运行下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa -C “youraccount@gmail.com”</span><br></pre></td></tr></table></figure>
+<p>之后，设置保存的位置，键入密码（Jenkins 使用 git plugin 密码必须为空，直接回车就可以），之后会生成两个文件 id_rsa 和 id_rsa.pub<br><img src="https://img-blog.csdn.net/20151120155313322" alt=""></p>
+<p>2. 完成之后需要在托管 Git 仓库的服务器上添加 公钥，添加一般在登录账户的设置里面。</p>
+<ul>
+<li>关于 TortoiseGit 中 TortoiseGitPlink 的设置</li>
+</ul>
+<p>上面讲的使用 ssh-keygen 是用来产生 OpenSSH 客户端的公钥和私钥的，如果我们使用 TortoiseGit 并配置 GitPlink，那么我们需要产生一个 putty 客户端的 key，也就是产生一个 ppk 的文件，关于这方面的资料很多，可以参考：<a href="http://segmentfault.com/a/1190000002877617" target="_blank" rel="noopener">GitLab 服务器下客户端 TortoiseGit 配置和使用教程</a></p>
+<ul>
+<li>Jenkins Git Plugin For Windows 的设置</li>
+</ul>
+<p>Git Plugin 在 Windows 上的设置需要注意几点：<br>1. Jenkins 安装在 Windows 上是以服务的方式安装的，并且它安装启动的账户是 Local System ，并非是你当前的账户，假设我当前的用户是 frank，Jenkins 运行起来的用户其实并不是 frank，而是 Local System 账户，但是这个账户并没有 SSH，所以导致代码在构建过程中 clone 的时候一直停在那里。<br>2. 为了解决这个问题第一个方案就是将 用户目录下 (也就是 c:\users\frank 目录) 的 .ssh 文件夹拷贝到 Local System 的用户目录下，但是这个用户目录在哪儿呢，在我的计算机中（使用的是 64 位的 Win7 系统）这个目录位于：C:\Windows\SysWOW64\config\systemprofile，只需要把 .ssh 目录拷贝到这个目录就可以了（需要注意的是. ssh 目录中包括公钥、私钥和 known_hosts 文件）<br>3. 这个 known_hosts 文件在你在网站上添加完公钥之后，使用 git clone 命令获取一份代码的时候，命令行就会给出提示，当你输入 yes 之后自动会生成的。<br>4. 除了上述方法之外，经过测试发现将. ssh 目录中的文件拷贝到 git 安装目录下的. ssh 目录中也是可以的，应该是 Local System 账户读取了 git 安装目录中的. ssh。<br>5. 最后需要注意配置完之后重启一次 Jenkins，在 Jenkins 的首页地址栏后面添加 /restart 确认之后就重启了，重启之后当重新构建的时候代码就可以 clone 下来。</p>
 
         </div>
         <footer class="article-footer">
@@ -179,7 +197,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/02/hello-world/" data-id="cjqfybxop0006pkqld6kkjzmn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/" data-id="cjqfybxof0002pkqlrsvd86pr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -249,17 +267,20 @@
             "@type": "Person",
             "name": "Andy"
         },
-        "headline": "Hello World",
-        "image": "http://yoursite.com",
+        "headline": "Jenkins 中 Git Plugin 配置的几个小问题",
+        "image": "http://yoursite.comhttps://img-blog.csdn.net/20151120152425126",
         "keywords": "",
-        "genre": "",
-        "datePublished": "2019-01-02",
-        "dateCreated": "2019-01-02",
-        "dateModified": "2019-01-02",
-        "url": "http://yoursite.com/2019/01/02/hello-world/",
-        "description": "Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick"
-        "wordCount": 144
+        "genre": "jenkins",
+        "datePublished": "2019-01-03",
+        "dateCreated": "2019-01-03",
+        "dateModified": "2019-01-03",
+        "url": "http://yoursite.com/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/",
+        "description": "
+原文地址 https://blog.csdn.net/csxiaoshui/article/details/49945265 
+
+  最近持续集成出现了一些问题，翻出来看了一下，发现之前许多配置都有点问题，导致在新环境的配置中屡屡失败，经过一番测试总算配置成功。记录其中几个坑，主要是关于 Git 的一些配置，供日后查阅。
+  CI（Continuous Integration）持续集成其实是由一"
+        "wordCount": 241
     }
 </script>
 
@@ -314,16 +335,22 @@ Quick"
         
 <nav id="article-nav">
     
-        <a href="/2019/01/02/simpread-hexo 设置 关于 标签 分类 归档 - 阿甘的博客 - CSDN 博客/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/01/03/Linux Shell 判断 if else 用法/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            hexo设置 关于 标签 分类 归档
+            Linux Shell 判断 if else 用法
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
+    
+        <a href="/2019/01/03/搭建 Jenkins+Github 集成环境/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">搭建 Jenkins+Github 集成环境</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -521,7 +548,7 @@ Quick"
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2019/01/02/hello-world/';
+    var disqus_url = 'http://yoursite.com/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/';
     
     (function() {
     var dsq = document.createElement('script');
