@@ -12,19 +12,17 @@
     
         <meta name="keywords" content="">
     
-    <meta name="description" content="原文地址 http://blog.51cto.com/xiong51/2091739  jenkins 使用 Publish Over SSH 插件实现远程自动部署 812374156 关注 0 人评论 87290 人阅读 2018-03-27 18:03:38 目录 1、安装  1.1、安装插件  1.2、配置   2、配置  2.1、配置 jenkins 支持 maven 自动编译  2.2">
+    <meta name="description" content="原文地址 http://blog.51cto.com/xiong51/2091739  目录 1、安装  1.1、安装插件  1.2、配置   2、配置  2.1、配置 jenkins 支持 maven 自动编译  2.2、配置文件   3、发布 4、脚本 官方特性介绍：publish over ssh   SCP - 通过 SSH 发送文件（SFTP）  在远程服务器上执行命令（可以禁用服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins 使用 Publish Over SSH 插件实现远程自动部署">
 <meta property="og:url" content="http://yoursite.com/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="原文地址 http://blog.51cto.com/xiong51/2091739  jenkins 使用 Publish Over SSH 插件实现远程自动部署 812374156 关注 0 人评论 87290 人阅读 2018-03-27 18:03:38 目录 1、安装  1.1、安装插件  1.2、配置   2、配置  2.1、配置 jenkins 支持 maven 自动编译  2.2">
+<meta property="og:description" content="原文地址 http://blog.51cto.com/xiong51/2091739  目录 1、安装  1.1、安装插件  1.2、配置   2、配置  2.1、配置 jenkins 支持 maven 自动编译  2.2、配置文件   3、发布 4、脚本 官方特性介绍：publish over ssh   SCP - 通过 SSH 发送文件（SFTP）  在远程服务器上执行命令（可以禁用服务器">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s4.51cto.com//wyfs02/M02/7F/42/wKiom1cXnLXSDm4VAAAdDsMauO4838_middle.jpg">
-<meta property="og:updated_time" content="2019-01-03T01:44:47.927Z">
+<meta property="og:updated_time" content="2019-01-03T01:50:34.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins 使用 Publish Over SSH 插件实现远程自动部署">
-<meta name="twitter:description" content="原文地址 http://blog.51cto.com/xiong51/2091739  jenkins 使用 Publish Over SSH 插件实现远程自动部署 812374156 关注 0 人评论 87290 人阅读 2018-03-27 18:03:38 目录 1、安装  1.1、安装插件  1.2、配置   2、配置  2.1、配置 jenkins 支持 maven 自动编译  2.2">
-<meta name="twitter:image" content="https://s4.51cto.com//wyfs02/M02/7F/42/wKiom1cXnLXSDm4VAAAdDsMauO4838_middle.jpg">
+<meta name="twitter:description" content="原文地址 http://blog.51cto.com/xiong51/2091739  目录 1、安装  1.1、安装插件  1.2、配置   2、配置  2.1、配置 jenkins 支持 maven 自动编译  2.2、配置文件   3、发布 4、脚本 官方特性介绍：publish over ssh   SCP - 通过 SSH 发送文件（SFTP）  在远程服务器上执行命令（可以禁用服务器">
     
 
     
@@ -168,7 +166,6 @@
             <blockquote>
 <p>原文地址 <a href="http://blog.51cto.com/xiong51/2091739" target="_blank" rel="noopener">http://blog.51cto.com/xiong51/2091739</a></p>
 </blockquote>
-<h1 id="jenkins-使用-Publish-Over-SSH-插件实现远程自动部署"><a href="#jenkins-使用-Publish-Over-SSH-插件实现远程自动部署" class="headerlink" title="jenkins 使用 Publish Over SSH 插件实现远程自动部署"></a>jenkins 使用 Publish Over SSH 插件实现远程自动部署</h1><p><a href="http://blog.51cto.com/xiong51" target="_blank" rel="noopener"><img src="https://s4.51cto.com//wyfs02/M02/7F/42/wKiom1cXnLXSDm4VAAAdDsMauO4838_middle.jpg" alt=""></a> <a href="http://blog.51cto.com/xiong51" target="_blank" rel="noopener">812374156</a> <a id="checkFollow1_5239058" class="checkFollow-btn on fl">关注</a> <a class="comment comment-num fr">0 人评论</a> <a href="javascript:;" target="_blank" rel="noopener">87290 人阅读</a> <a href="javascript:;" target="_blank" rel="noopener">2018-03-27 18:03:38</a></p>
 <p>目录</p>
 <p>1、安装</p>
 <ul>
@@ -258,16 +255,8 @@
 </li>
 <li><p>war 包地址 我定义的为 / mnt，如果是别的更改一下目录就行</p>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#</span><br><span class="line"># __auther__: xiong</span><br><span class="line"># __ time __: 2018年03月28日 11:00:54</span><br><span class="line"># __ 作用 __: 用于jenkins build完成之后的最后操作shell脚本</span><br><span class="line"># __ 使用 __: 定义jenkins</span><br><span class="line">#</span><br><span class="line">#---------------------------------- 文件路径配置 ----------------------------------</span><br><span class="line"># 定义基础路径及目录</span><br><span class="line">server_name=m2mManage</span><br><span class="line"></span><br><span class="line"># tomcat名称</span><br><span class="line">tomcat_server_name=tomcat_m2mManage</span><br><span class="line"></span><br><span class="line"># tomcat 服务启动脚本</span><br><span class="line">tomcat_serivce=/usr/local/$tomcat_server_name/sbin/$tomcat_server_name</span><br><span class="line"></span><br><span class="line"># 保存文件路径</span><br><span class="line">base_dir=/usr/local/website</span><br><span class="line">work_dir=$base_dir/m2mManageDest</span><br><span class="line"></span><br><span class="line"># 以时间的方式来发布版本</span><br><span class="line">time=`date +%Y%m%d%H%M`</span><br><span class="line">time_dir=$work_dir/$server_name$time</span><br><span class="line"></span><br><span class="line"># 链接路径</span><br><span class="line">link_dir=$base_dir/$server_name</span><br><span class="line"></span><br><span class="line"># 配置文件路径</span><br><span class="line">conf_dir=WEB-INF/classes</span><br><span class="line"></span><br><span class="line">#---------------------------------- 启动及判断配置 ----------------------------------</span><br><span class="line"></span><br><span class="line"># 创建目录,如果存在,直接退出重新发布一次</span><br><span class="line">if [ -d $time_dir ];then</span><br><span class="line">	exit 5</span><br><span class="line">else</span><br><span class="line">	/bin/mkdir $time_dir</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 检测这个端口判断服务是否启动,</span><br><span class="line">if /usr/sbin/ss -tnl | grep 这里定义端口地址;then</span><br><span class="line">        # 启动了那就直接停止它</span><br><span class="line">        $tomcat_serivce stop</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 将打包上传的文件传到这个目录下</span><br><span class="line">/usr/bin/unzip /mnt/$server_name/$server_name.war -d $time_dir/ &amp;&gt;/dev/null</span><br><span class="line"></span><br><span class="line"># 创建一个用于保存当前上线包的无效配置文件,并当无效配置文件复制到该文件中</span><br><span class="line">old_conf_dir=$time_dir/$conf_dir</span><br><span class="line"></span><br><span class="line">/bin/mkdir $old_conf_dir/old_conf</span><br><span class="line">/bin/mv -i $old_conf_dir/*.p* $old_conf_dir/old_conf/</span><br><span class="line"></span><br><span class="line"># 将上一个版本的配置文件复制到当前上线的文件中</span><br><span class="line">/bin/mv -i $link_dir/$conf_dir/*.p* $time_dir/$conf_dir</span><br><span class="line"></span><br><span class="line"># 判断上一个版本的软链接,用于回滚版本</span><br><span class="line">if [ -d $link_dir ];then</span><br><span class="line">	/bin/rm -irf $link_dir</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 重新定义新上线包的软链接</span><br><span class="line">/bin/ln -sv $time_dir $link_dir</span><br><span class="line"></span><br><span class="line"># 启动服务</span><br><span class="line">$tomcat_serivce start</span><br></pre></td></tr></table></figure>
-</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#</span><br><span class="line"># __auther__: xiong</span><br><span class="line"># __ time __: 2018年03月28日 11:00:54</span><br><span class="line"># __ 作用 __: 用于jenkins build完成之后的最后操作shell脚本</span><br><span class="line"># __ 使用 __: 定义jenkins</span><br><span class="line">#</span><br><span class="line">#---------------------------------- 文件路径配置 ----------------------------------</span><br><span class="line"># 定义基础路径及目录</span><br><span class="line">server_name=m2mManage</span><br><span class="line"></span><br><span class="line"># tomcat名称</span><br><span class="line">tomcat_server_name=tomcat_m2mManage</span><br><span class="line"></span><br><span class="line"># tomcat 服务启动脚本</span><br><span class="line">tomcat_serivce=/usr/local/$tomcat_server_name/sbin/$tomcat_server_name</span><br><span class="line"></span><br><span class="line"># 保存文件路径</span><br><span class="line">base_dir=/usr/local/website</span><br><span class="line">work_dir=$base_dir/m2mManageDest</span><br><span class="line"></span><br><span class="line"># 以时间的方式来发布版本</span><br><span class="line">time=`date +%Y%m%d%H%M`</span><br><span class="line">time_dir=$work_dir/$server_name$time</span><br><span class="line"></span><br><span class="line"># 链接路径</span><br><span class="line">link_dir=$base_dir/$server_name</span><br><span class="line"></span><br><span class="line"># 配置文件路径</span><br><span class="line">conf_dir=WEB-INF/classes</span><br><span class="line"></span><br><span class="line">#---------------------------------- 启动及判断配置 ----------------------------------</span><br><span class="line"></span><br><span class="line"># 创建目录,如果存在,直接退出重新发布一次</span><br><span class="line">if [ -d $time_dir ];then</span><br><span class="line">	exit 5</span><br><span class="line">else</span><br><span class="line">	/bin/mkdir $time_dir</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 检测这个端口判断服务是否启动,</span><br><span class="line">if /usr/sbin/ss -tnl | grep 这里定义端口地址;then</span><br><span class="line">        # 启动了那就直接停止它</span><br><span class="line">        $tomcat_serivce stop</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 将打包上传的文件传到这个目录下</span><br><span class="line">/usr/bin/unzip /mnt/$server_name/$server_name.war -d $time_dir/ &amp;&gt;/dev/null</span><br><span class="line"></span><br><span class="line"># 创建一个用于保存当前上线包的无效配置文件,并当无效配置文件复制到该文件中</span><br><span class="line">old_conf_dir=$time_dir/$conf_dir</span><br><span class="line"></span><br><span class="line">/bin/mkdir $old_conf_dir/old_conf</span><br><span class="line">/bin/mv -i $old_conf_dir/*.p* $old_conf_dir/old_conf/</span><br><span class="line"></span><br><span class="line"># 将上一个版本的配置文件复制到当前上线的文件中</span><br><span class="line">/bin/mv -i $link_dir/$conf_dir/*.p* $time_dir/$conf_dir</span><br><span class="line"></span><br><span class="line"># 判断上一个版本的软链接,用于回滚版本</span><br><span class="line">if [ -d $link_dir ];then</span><br><span class="line">	/bin/rm -irf $link_dir</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 重新定义新上线包的软链接</span><br><span class="line">/bin/ln -sv $time_dir $link_dir</span><br><span class="line"></span><br><span class="line"># 启动服务</span><br><span class="line">$tomcat_serivce start</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>© 著作权归作者所有：来自 51CTO 博客作者 812374156 的原创作品，如需转载，请注明出处，否则将追究法律责任 <a href="http://blog.51cto.com/search/result?q=jenkins" target="_blank" rel="noopener">jenkins</a> <a href="http://blog.51cto.com/search/result?q=%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener">自动部署</a> <a href="http://blog.51cto.com/xiong51/category1.html" target="_blank" rel="noopener">自动化工具</a></p>
-<p>3</p>
-<p>分享</p>
-<p><a class="bds_tsina" data-cmd="tsina">微博</a> <a class="bds_sqq" data-cmd="sqq">QQ</a> <a class="bds_weixin" data-cmd="weixin">微信</a> <img src="http://blog.51cto.com/qr/qr-url?url=http%3A%2F%2Fblog.51cto.com%2Fxiong51%2F2091739" alt=""></p>
-<p>收藏</p>
-<p><a href="http://blog.51cto.com/xiong51/2090706" title="python_day16_DB_SQL" target="_blank" rel="noopener">上一篇：python_day16_DB_…</a> <a href="http://blog.51cto.com/xiong51/2092563" title="python_day16_pythom-mysql-API" target="_blank" rel="noopener">下一篇：python_day16_pyt…</a> <a href="http://blog.51cto.com/xiong51" target="_blank" rel="noopener"><img src="https://s4.51cto.com//wyfs02/M02/7F/42/wKiom1cXnLXSDm4VAAAdDsMauO4838_middle.jpg" alt=""> </a> <a href="http://blog.51cto.com/xiong51" target="_blank" rel="noopener">812374156</a></p>
-<h3 id="87-篇文章，56W-人气，3-粉丝"><a href="#87-篇文章，56W-人气，3-粉丝" class="headerlink" title="87 篇文章，56W + 人气，3 粉丝"></a>87 篇文章，56W + 人气，3 粉丝</h3><p><a id="checkFollow2_5239058" class="follow-1 checkFollow on">关注</a></p>
 
         </div>
         <footer class="article-footer">
@@ -275,7 +264,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/" data-id="cjqfybxos0008pkqlurg27tj8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/" data-id="cjqfyt2an0008b4qlq30084uv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -346,7 +335,7 @@
             "name": "Andy"
         },
         "headline": "jenkins 使用 Publish Over SSH 插件实现远程自动部署",
-        "image": "http://yoursite.comhttps://s4.51cto.com//wyfs02/M02/7F/42/wKiom1cXnLXSDm4VAAAdDsMauO4838_middle.jpg",
+        "image": "http://yoursite.com",
         "keywords": "",
         "genre": "jenkins",
         "datePublished": "2019-01-03",
@@ -356,7 +345,6 @@
         "description": "
 原文地址 http://blog.51cto.com/xiong51/2091739
 
-jenkins 使用 Publish Over SSH 插件实现远程自动部署 812374156 关注 0 人评论 87290 人阅读 2018-03-27 18:03:38
 目录
 1、安装
 
@@ -369,8 +357,17 @@ jenkins 使用 Publish Over SSH 插件实现远程自动部署 812374156 关注 
 
 2.1、配置 jenkins 支持 maven 自动编译
 
-2.2"
-        "wordCount": 493
+2.2、配置文件
+
+
+3、发布
+4、脚本
+官方特性介绍：publish over ssh 
+
+SCP - 通过 SSH 发送文件（SFTP）
+
+在远程服务器上执行命令（可以禁用服务器"
+        "wordCount": 386
     }
 </script>
 
@@ -523,7 +520,7 @@ jenkins 使用 Publish Over SSH 插件实现远程自动部署 812374156 关注 
                             <a href="/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/" class="thumbnail">
     
     
-        <span style="background-image:url(https://s4.51cto.com//wyfs02/M02/7F/42/wKiom1cXnLXSDm4VAAAdDsMauO4838_middle.jpg)" alt="jenkins 使用 Publish Over SSH 插件实现远程自动部署" class="thumbnail-image"></span>
+        <span class="thumbnail-image thumbnail-none"></span>
     
     
 </a>
