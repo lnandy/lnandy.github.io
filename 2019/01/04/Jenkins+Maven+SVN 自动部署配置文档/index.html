@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Jenkins+Maven+SVN 自动部署配置文档 | 个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="">
+    
+    <meta name="description" content="原文地址 https://blog.csdn.net/xbynet/article/details/52779314   基本版本 JenKins:2.19.1, Maven:3.1 环境要求:  Java 7 256MB free memory 1GB+ free disk space  Jenkins 官网: https://jenkins.io/index.html 官方文档：https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins+Maven+SVN 自动部署配置文档">
+<meta property="og:url" content="http://yoursite.com/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="原文地址 https://blog.csdn.net/xbynet/article/details/52779314   基本版本 JenKins:2.19.1, Maven:3.1 环境要求:  Java 7 256MB free memory 1GB+ free disk space  Jenkins 官网: https://jenkins.io/index.html 官方文档：https:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20161010165918197">
+<meta property="og:updated_time" content="2019-01-04T03:38:27.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins+Maven+SVN 自动部署配置文档">
+<meta name="twitter:description" content="原文地址 https://blog.csdn.net/xbynet/article/details/52779314   基本版本 JenKins:2.19.1, Maven:3.1 环境要求:  Java 7 256MB free memory 1GB+ free disk space  Jenkins 官网: https://jenkins.io/index.html 官方文档：https:">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161010165918197">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/hexo/">hexo</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/jenkins/">jenkins</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/linux/">linux</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/jenkins/">jenkins</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Jenkins+Maven+SVN 自动部署配置文档" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Jenkins+Maven+SVN 自动部署配置文档
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/" class="article-date">
+            <time datetime="2019-01-04T03:37:40.216Z" itemprop="datePublished">2019-01-04</time>
+        </a>
+    </div>
+
+		
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>原文地址 <a href="https://blog.csdn.net/xbynet/article/details/52779314" target="_blank" rel="noopener">https://blog.csdn.net/xbynet/article/details/52779314</a> <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-5edb848729.css"></p>
+</blockquote>
+<h1 id="基本"><a href="#基本" class="headerlink" title="基本"></a><a></a>基本</h1><p>版本 JenKins:2.19.1, Maven:3.1</p>
+<p>环境要求:</p>
+<ul>
+<li>Java 7</li>
+<li>256MB free memory</li>
+<li>1GB+ free disk space</li>
+</ul>
+<p>Jenkins 官网: <a href="https://jenkins.io/index.html" target="_blank" rel="noopener">https://jenkins.io/index.html</a></p>
+<p>官方文档：<a href="https://wiki.jenkins-ci.org/display/JENKINS/Home" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/Home</a></p>
+<p>jenkins 是一个广泛用于持续构建的可视化 web 工具，持续构建说得更直白点，就是各种项目的 “自动化” 编译、打包、分发部署。jenkins 可以很好的支持各种语言（比如：java, c#, php 等）的项目构建，也完全兼容 ant、maven、gradle 等多种第三方构建工具，同时跟 svn、git 能无缝集成，也支持直接与知名源代码托管网站，比如 github、bitbucket 直接集成。</p>
+<p>网上对于 Jenkins1.x 的资料较多，但是对于 Jenkins2.x 的资料较少，而这两个版本之间变化还是很大的。</p>
+<p>下载后是一个 war 包（也可以选择 windows installer 包，最新版本目前没有提供）</p>
+<p>将 war 包放进 tomcat 即可。</p>
+<h1 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a><a></a>初始化配置</h1><p>访问，如: 127.0.0.1:8088/Jenkins</p>
+<p>第一次要求输入密码，初始密码在 ${USER_HOME}.jenkins\secrets\initialAdminPassword 文件中查看。然后需要等到十来分钟，</p>
+<p><img src="https://img-blog.csdn.net/20161010165918197" alt=""></p>
+<p>等 Jenkins 初始化结束进入下一步。</p>
+<p><img src="https://img-blog.csdn.net/20161010165918639" alt=""></p>
+<p>选择安装建议的插件。接下来就是安装基本的插件（由于网速与服务器原因，比较慢。要等上几十分钟到几个小时）</p>
+<p><img src="https://img-blog.csdn.net/20161010165918978" alt=""></p>
+<p>这些推荐的插件，目前我们关心的是 Subversion Plugin-in ，SSH Slaves Plugin。</p>
+<p>可供选择的 jenkins2 插件镜像列表：</p>
+<p>Jenkins 所有镜像列表： <a href="http://mirrors.jenkins-ci.org/status.html" target="_blank" rel="noopener">http://mirrors.jenkins-ci.org/status.html</a></p>
+<p>比如日本的镜像： <a href="http://mirror.esuni.jp/jenkins/" target="_blank" rel="noopener">http://mirror.esuni.jp/jenkins/</a>, <a href="http://ftp.yz.yamagata-u.ac.jp/pub/misc/jenkins/，" target="_blank" rel="noopener">http://ftp.yz.yamagata-u.ac.jp/pub/misc/jenkins/，</a> <a href="http://ftp.tsukuba.wide.ad.jp/software/jenkins/" target="_blank" rel="noopener">http://ftp.tsukuba.wide.ad.jp/software/jenkins/</a></p>
+<p>德国的镜像： <a href="http://jenkins.mirror.isppower.de/" target="_blank" rel="noopener">http://jenkins.mirror.isppower.de/</a> ， <a href="http://mirror.yandex.ru/mirrors/jenkins/" target="_blank" rel="noopener">http://mirror.yandex.ru/mirrors/jenkins/</a></p>
+<p>官方的镜像： <a href="http://mirrors.jenkins-ci.org/，" target="_blank" rel="noopener">http://mirrors.jenkins-ci.org/，</a> <a href="http://archives.jenkins-ci.org/" target="_blank" rel="noopener">http://archives.jenkins-ci.org/</a></p>
+<p>然后会提示设置管理员用户和密码，如下：</p>
+<p><img src="https://img-blog.csdn.net/20161010165919279" alt=""></p>
+<p>进入 jenkins</p>
+<p>经过以上的步骤 jenkins 已经安装完成。</p>
+<p><img src="https://img-blog.csdn.net/20161010165919665" alt=""></p>
+<h2 id="JDK-及-Maven"><a href="#JDK-及-Maven" class="headerlink" title="JDK 及 Maven"></a><a></a>JDK 及 Maven</h2><p>在部署你的项目之前你需要 jdk，maven 的信息告知 Jenkins。</p>
+<ol>
+<li>点击系统管理 -&gt;Global Tool Configuration:</li>
+</ol>
+<p><img src="https://img-blog.csdn.net/20161010165919904" alt=""></p>
+<p>jdk 的 JAVA_HOME 必须和你环境变量里的 jdk 保持一致。</p>
+<p>Maven：</p>
+<p><img src="https://img-blog.csdn.net/20161010165920244" alt=""></p>
+<h1 id="创建一个新任务"><a href="#创建一个新任务" class="headerlink" title="创建一个新任务"></a><a></a>创建一个新任务</h1><p><img src="https://img-blog.csdn.net/20161010165920701" alt=""></p>
+<p>之后进入任务配置界面：</p>
+<p><img src="https://img-blog.csdn.net/20161010165921025" alt=""></p>
+<p>配置一下工作空间</p>
+<p><img src="https://img-blog.csdn.net/20161010165921217" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161010165921509" alt=""></p>
+<p>问题：在这里会遇到不支持 Repository URL 中含中文的情形：这里我们需要配置 Jenkins 所在的 tomcat 的 Server.xml 文件，修改: 加上：URIEncoding=”UTF-8”</p>
+<connector port="8088" protocol="HTTP/1.1" connectiontimeout="20000" redirectport="8443" uriencoding="UTF-8">
+
+<p>保存重启 Jenkins 所在 tomcat 即可解决，选择所配置的用户，上面的红色错误也不会出现了。</p>
+<p>接下来就是构建</p>
+<h1 id="构建配置"><a href="#构建配置" class="headerlink" title="构建配置"></a><a></a>构建配置</h1><p><img src="https://img-blog.csdn.net/20161010165921732" alt=""></p>
+<p>maven version : 选之前录入的 maven，pom 选 pom 文件所在的相对位置（此处是相对 svn 目录的位置）。</p>
+<p><img src="https://img-blog.csdn.net/20161010165922056" alt=""></p>
+<p>点击 save 后，点击立即构建，就可以构建了，可以在你的工作空间中发现你想要的东西了（war 包）。</p>
+<p>如果出现下面的问题：</p>
+<p><img src="https://img-blog.csdn.net/20161010165922342" alt=""></p>
+<p>方式一：这个问题只需要修改你的 pom.xml 即可。 加入 <defaultgoal>install</defaultgoal></p>
+<p><img src="https://img-blog.csdn.net/20161010165922790" alt=""></p>
+<p>方式二：当然也可以这样配置：</p>
+<p><img src="https://img-blog.csdn.net/20161010165923014" alt=""></p>
+<h2 id="定时构建配置"><a href="#定时构建配置" class="headerlink" title="定时构建配置"></a><a></a>定时构建配置</h2><p><img src="https://img-blog.csdn.net/20161010165923306" alt=""></p>
+<p>规则：</p>
+<p>MINUTE    Minutes within the hour (0–59)</p>
+<p>HOUR    The hour of the day (0–23)</p>
+<p>DOM    The day of the month (1–31)</p>
+<p>MONTH    The month (1–12)</p>
+<p>DOW    The day of the week (0–7) where 0 and 7 are Sunday.</p>
+<p>指定顺序为 MINUTE HOUR DOM MONTH DOW</p>
+<p>在某个域指定多个值的规则是：</p>
+<ul>
+<li><ul>
+<li>specifies all valid values</li>
+</ul>
+</li>
+<li>M-N specifies a range of values</li>
+<li>M-N/X or */X steps by intervals of X through the specified range or whole valid range</li>
+<li>A,B,…,Z enumerates multiple values</li>
+</ul>
+<p>如果要定期执行任务，必须提供 H (for “hash”) 标识。</p>
+<p>比如 0 0 <em> </em> <em> 会在同一时间执行所有任务，而使用 H H </em> <em> </em> 也会在每天执行一次任务，但是并不是同一时间，这样就可以节省很多资源。</p>
+<p>H 还可以用于范围：H H(0-7) <em> </em> * 标识在每天 12:00-7:59 之间的某个时间执行任务。</p>
+<p> H <em> </em> <em> </em> 代表每个小时执行一次</p>
+<p>H/15 <em> </em> <em> </em> 每 15 分钟执行一次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H(0-29)/10 * * * * every ten minutes in the first half of every hour (three times, perhaps at :04, :14, :24)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># once every two hours at 45 minutes past the hour starting at 9:45 AM and finishing at 3:45 PM every weekday.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">45 9-16/2 * * 1-5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># once in every two hours slot between 9 AM and 5 PM every weekday (perhaps at 10:38 AM, 12:38 PM, 2:38 PM, 4:38 PM)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H H(9-16)/2 * * 1-5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># once a day on the 1st and 15th of every month except December</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H H 1,15 1-11 *</span><br></pre></td></tr></table></figure>
+<h1 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a><a></a>自动部署</h1><h2 id="自动部署到-tomcat"><a href="#自动部署到-tomcat" class="headerlink" title="自动部署到 tomcat"></a><a></a>自动部署到 tomcat</h2><p>自动部署需要一个容器，那 Jenkins 是怎么知道你的容器的呢？容器插件</p>
+<p>首页 -》系统管理 -》管理插件</p>
+<p>搜索 deploy，很快就会找到这个 deploy to container plugin，安装完记得重启。</p>
+<p><img src="https://img-blog.csdn.net/20161010165923639" alt=""></p>
+<p>这个由于网络原因下载会失败, 这个时候需要设置镜像站点:</p>
+<p>系统设置 -》插件 -》高级 -》Update Site:</p>
+<p><img src="https://img-blog.csdn.net/20161010165923915" alt=""></p>
+<p>默认为: <a href="http://updates.jenkins-ci.org/update-center.json" target="_blank" rel="noopener">http://updates.jenkins-ci.org/update-center.json</a></p>
+<p>我们改为一个日本的镜像: <a href="http://mirror.esuni.jp/jenkins/updates/update-center.json" target="_blank" rel="noopener">http://mirror.esuni.jp/jenkins/updates/update-center.json</a></p>
+<p><img src="https://img-blog.csdn.net/20161010165924170" alt=""></p>
+<p>接着选你的项目 -》配置</p>
+<p>构建后操作</p>
+<p><img src="https://img-blog.csdn.net/20161010165924540" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161010165924853" alt=""></p>
+<ul>
+<li>WAR/EAR files：是相对于你前面配置的工作空间的。</li>
+<li>Context path：是你容器部署的目录，如果是 tomcat，那么在 webapps 下，如果你不想要项目名称的话选 “\”, 填写 “ROOT” 是不可以的。</li>
+<li>Containers： tomcat7。当然你要有 manager 用户信息。在 tomcat 目录下的 conf 目录，tomcat-users.xml 修改如下：</li>
+</ul>
+<role role="">
+
+<role role="">
+
+<role role="">
+
+<role role="">
+
+<user password="tomcat" roles="manager-gui,manager-script,manager-jmx,manager-status" user="">
+
+<p>保存文件。同时保存 Jenkins。</p>
+<p>先启动你的 tomcat，再次点击立即构建。</p>
+<p><img src="https://img-blog.csdn.net/20161010165925123" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161010165925462" alt=""></p>
+<p>如上，证明你成功了! 打开浏览器访问下工程确认一下。 </p>
+<h2 id="自动部署到-Weblogic"><a href="#自动部署到-Weblogic" class="headerlink" title="自动部署到 Weblogic"></a><a></a>自动部署到 Weblogic</h2><p>首先安装 Deploy WebLogic Plugin 插件。安装好之后，点击</p>
+<p>系统配置 - 全局配置，滑到 WebLogic Deployment Plugin 出进行配置</p>
+<p><img src="https://img-blog.csdn.net/20161010165925701" alt=""></p>
+<p>其中 additional classpath 写上 weblogic library path :</p>
+<ul>
+<li>for WLS 8.X /pathtojar/weblogic.jar</li>
+<li>for WLS 10.3 /pathtojar/wlfullclient.jar</li>
+<li>for WLS 12.1 /pathtojar/wlthint3client.jar.</li>
+</ul>
+<p><strong>wlfullclient.jar 生成方法：</strong>（<a href="http://docs.oracle.com/cd/E12840_01/wls/docs103/client/jarbuilder.html" target="_blank" rel="noopener"></a><a href="http://docs.oracle.com/cd/E12840_01/wls/docs103/client/jarbuilder.html）" target="_blank" rel="noopener">http://docs.oracle.com/cd/E12840_01/wls/docs103/client/jarbuilder.html）</a></p>
+<p>进入 weblogic 的安装目录例如 C:\Oracle\Middleware\wlserver_10.3\server\lib，</p>
+<p>运行 java -jar wljarbuilder.jar 就能生成 wlfullclient.jar 文件</p>
+<p><img src="https://img-blog.csdn.net/20161010165926041" alt=""></p>
+<p>如果存在堆溢出，可以把 -Xmx 调大一点。</p>
+<p>这个 Congiguration File 的写法如下</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<config xmlns="http://org.jenkinsci.plugins/WeblogicDeploymentPlugin" **xmlns:xsi**="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://org.jenkinsci.plugins/WeblogicDeploymentPlugin plugin-configuration.xsd"><br><br><weblogic-targets><br><br>    <weblogic-target><br><br>        <name>my_managed_server1</name><br><br>        <host><em>weblogic.admin.server.host</em></host><br><br>        <port><em>weblogic.admin.server.port</em></port><br><br>        <login><em>weblogic.admin.server.login</em></login><br><br>        <password><em>weblogic.admin.server.password</em></password><br><br>        <authmode>BY_KEY</authmode><br><br>        <userconfigfile>P:\Documents\perso\dev\wls-deploy-plugin\wls_userConfig.properties</userconfigfile><br><br>        <userkeyfile>P:\Documents\perso\dev\wls-deploy-plugin\wls_userConfig.key</userkeyfile><br><br>    </weblogic-target><br><br>    <weblogic-target><br><br>        <name>my_managed_server2</name><br><br>        <host><em>weblogic.admin2.server.host</em></host><br><br>        <port><em>weblogic.admin2.server.port</em></port><br><br>        <login><em>weblogic.admin2.server.login</em></login><br><br>        <password><em>weblogic.admin2.server.password</em></password><br><br>        <authmode>BY_LOGIN</authmode><br><br>    </weblogic-target><br><br>    <weblogic-target><br><br>        <name>my_managed_server3</name><br><br>        <host><em>weblogic.admin.server.host</em></host><br><br>        <port><em>weblogic.admin.server.port</em></port><br><br>        <login><em>weblogic.admin.server.login</em></login><br><br>        <password><em>weblogic.admin.server.password</em></password><br><br>        <!-- used to transfer by FTP the component flagged as library to the WL machine --><br><br>        <ftphost><em>weblogic.remote.host</em></ftphost><br><br>        <ftpuser><em>weblogic.remote.user</em></ftpuser><br><br>        <ftppassowrd><em>weblogic.remote.password</em></ftppassowrd><br><br>        <remotedir>/remote/path/used/to/transfer/libraries</remotedir><br><br>    </weblogic-target><br><br></weblogic-targets><br><br></config>
+
+<p>最后一个配置 FTP 其实是用来部署依赖库，而不是整个项目的。</p>
+<p>注意：每次修改 default.xml 文件后都需要重新在系统设置中 apply-save 才能生效。</p>
+<p>认证模式 authmode</p>
+<ul>
+<li>BY_KEY : uses a keystore file and a config file</li>
+<li>BY_LOGIN : uses a login/password (this is the default authentication mode).</li>
+</ul>
+<p>接下来配置任务的 weblogic 部分: 增加一个构建后操作：</p>
+<p><img src="https://img-blog.csdn.net/20161010165926279" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161010165926712" alt=""></p>
+<p>需要配置的项主要有:</p>
+<ul>
+<li>Task Name: 用于部署的名字；Eg. Webapp WL Deployment</li>
+<li>Environment: 指定你要部署到的环境。（前后 default.xml 配好，这里选择即可）确保使用的是 AdminServer 端口（默认 7001）而不是 Managed Server 端口</li>
+<li>Name: weblogic 的应用名，必须事先存在。</li>
+<li>Base directory where the resource to deploy can be found：比如 E:\jenkins-work\target\（前前面指定的工作空间下的 target \ 下）</li>
+<li>Built resource to deploy: 分发包的名称，可以使用正则表达式标识。比如 test.war，应该写成 test.war</li>
+<li>Targets: The name of the managed server you want to deploy the webapp to 默认为 AdminServer，多个以逗号 (,) 分隔。</li>
+<li>Weblogic libraries: 分发包是否以依赖库的形式进行部署。一般不需要勾选</li>
+<li>Fail build if deployment fails：部署失败是是否显示构建失败，<strong>一般需要勾选</strong>。</li>
+</ul>
+<p>其中 default.xml 配置, Environment，targets 参数对应于 weblogic domain 安装配置时的如下：</p>
+<p><img src="https://img-blog.csdn.net/20161010165927295" alt=""></p>
+<p>配置示例：</p>
+<p><img src="https://img-blog.csdn.net/20161010165927967" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161010165928228" alt=""></p>
+<p>高级配置：</p>
+<p><img src="https://img-blog.csdn.net/20161010165928795" alt=""></p>
+<p>详细参考: <a href="https://wiki.jenkins-ci.org/display/JENKINS/WebLogic+Deployer+Plugin" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/WebLogic+Deployer+Plugin</a></p>
+<p><a href="https://www.zybuluo.com/kevinZheng/note/359003" target="_blank" rel="noopener">https://www.zybuluo.com/kevinZheng/note/359003</a></p>
+<p>比如：weblogic.Deployer 部署 web 应用</p>
+<p>先 undeploy</p>
+<p>“D:\Program Files\Java\jdk1.8.0_101\jre\bin/java” -Xms256M -Xmx1024M -cp E:\jenkins-tomcat7\wlfullclient.jar weblogic.Deployer -debug -remote -verbose -noexit -name fxglxt -targets AdminServer -adminurl t3://localhost:7001 -user weblogic -password 12345678 –undeploy</p>
+<p>再 deploy</p>
+<p>“D:\Program Files\Java\jdk1.8.0_101\jre\bin/java” -Xms256M -Xmx1024M -cp E:\jenkins-tomcat7\wlfullclient.jar weblogic.Deployer -debug -stage -remote -verbose -upload -name fxglxt -source E:\jenkins-work\target\fxglxt.war -targets AdminServer -adminurl t3://localhost:7001 -user weblogic -password 12345678 –deploy</p>
+<p>当然你还可以使用 - redeploy 来结合两个步骤</p>
+<p>“D:\Program Files\Java\jdk1.8.0_101\jre\bin/java” -Xms256M -Xmx1024M -cp E:\jenkins-tomcat7\wlfullclient.jar weblogic.Deployer -debug -stage -remote -verbose -upload -name fxglxt -source E:\jenkins-work\target\fxglxt.war -targets AdminServer -adminurl t3://localhost:7001 -user weblogic -password 12345678 -redeploy</p>
+<p>命令说明：</p>
+<p>1. -Xms256M -Xmx256M 用来防止内存溢出，</p>
+<p>2. wlfullclient.jar 里提供了 weblogic.Deployer 命令用来远程发布项目 war 包，所以 需要 - cp 指定 jar 包路径 来启动命令 , 根据不同 weblogic 版本，该文件不同。</p>
+<p>3. -verbose 指定后面的参数，</p>
+<p>3. -upload 远程发布需要上传文件，</p>
+<p>4. -name 发布项目名称</p>
+<p>5. -targets 目标服务，</p>
+<p>6. -adminurl 指定连接 weblogic 的协议 ip 和端口</p>
+<p>7. -redploy 重新发布的 意思</p>
+<p>8. -source 本地需要上传 war 包路径</p>
+<h1 id="日志查看"><a href="#日志查看" class="headerlink" title="日志查看"></a><a></a>日志查看</h1><p><img src="https://img-blog.csdn.net/20161010165929072" alt=""></p>
+<p>点击构建按钮后，不要多次点击，此时可以查看左下角执行状态：</p>
+<p><img src="https://img-blog.csdn.net/20161010165929295" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161010165929603" alt=""></p>
+<p>查看 Weblogic 专有日志:</p>
+<p><img src="https://img-blog.csdn.net/20161010165929873" alt=""></p>
+<p>参考：</p>
+<p><a href="http://www.itdadao.com/articles/c15a338614p0.html" target="_blank" rel="noopener">http://www.itdadao.com/articles/c15a338614p0.html</a></p>
+<p><a href="https://www.oschina.net/question/912538_235734?fromerr=T2zy6I7r" target="_blank" rel="noopener">https://www.oschina.net/question/912538_235734?fromerr=T2zy6I7r</a></p>
+<p><a href="http://www.cnblogs.com/itech/p/5610634.html" target="_blank" rel="noopener">http://www.cnblogs.com/itech/p/5610634.html</a></p>
+<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/Home" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/Home</a></p>
+<p><a href="http://blog.csdn.net/thekenofdis/article/details/51316787" target="_blank" rel="noopener">http://blog.csdn.net/thekenofdis/article/details/51316787</a></p>
+<p><a href="https://wiki.jenkins-ci.org/display/JENKINS/WebLogic+Deployer+Plugin" target="_blank" rel="noopener">https://wiki.jenkins-ci.org/display/JENKINS/WebLogic+Deployer+Plugin</a></p>
+<p><a href="http://stackoverflow.com/questions/16478705/deploy-to-weblogic-using-maven-and-jenkins" target="_blank" rel="noopener">http://stackoverflow.com/questions/16478705/deploy-to-weblogic-using-maven-and-jenkins</a></p>
+<p><a href="https://www.zybuluo.com/kevinZheng/note/359003" target="_blank" rel="noopener">https://www.zybuluo.com/kevinZheng/note/359003</a></p>
+</user></role></role></role></role></connector>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/" data-id="cjqhhpp4o0001vkqliumfrzn9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Andy"
+        },
+        "headline": "Jenkins+Maven+SVN 自动部署配置文档",
+        "image": "http://yoursite.comhttps://img-blog.csdn.net/20161010165918197",
+        "keywords": "",
+        "genre": "jenkins",
+        "datePublished": "2019-01-04",
+        "dateCreated": "2019-01-04",
+        "dateModified": "2019-01-04",
+        "url": "http://yoursite.com/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/",
+        "description": "
+原文地址 https://blog.csdn.net/xbynet/article/details/52779314 
+
+基本版本 JenKins:2.19.1, Maven:3.1
+环境要求:
+
+Java 7
+256MB free memory
+1GB+ free disk space
+
+Jenkins 官网: https://jenkins.io/index.html
+官方文档：https:"
+        "wordCount": 1095
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80MTk0Mi8xODQ4OA==">
+    <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/lnandy" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/03/Linux Shell 判断 if else 用法/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Linux Shell 判断 if else 用法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://img-blog.csdn.net/20161010165918197)" alt="Jenkins+Maven+SVN 自动部署配置文档" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/jenkins/">jenkins</a></p>
+                            <p class="item-title"><a href="/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/" class="title">Jenkins+Maven+SVN 自动部署配置文档</a></p>
+                            <p class="item-date"><time datetime="2019-01-04T03:37:40.216Z" itemprop="datePublished">2019-01-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/Linux Shell 判断 if else 用法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.linuxdaxue.com/wp-content/uploads/2016/05/shell_thumb-3.jpg)" alt="Linux Shell 判断 if else 用法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
+                            <p class="item-title"><a href="/2019/01/03/Linux Shell 判断 if else 用法/" class="title">Linux Shell 判断 if else 用法</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T01:41:34.610Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://img-blog.csdn.net/20151120152425126)" alt="Jenkins 中 Git Plugin 配置的几个小问题" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/jenkins/">jenkins</a></p>
+                            <p class="item-title"><a href="/2019/01/03/Jenkins 中 Git Plugin 配置的几个小问题/" class="title">Jenkins 中 Git Plugin 配置的几个小问题</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T01:41:34.599Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/搭建 Jenkins+Github 集成环境/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://img-blog.csdn.net/20160806111819857?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)" alt="搭建 Jenkins+Github 集成环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/jenkins/">jenkins</a></p>
+                            <p class="item-title"><a href="/2019/01/03/搭建 Jenkins+Github 集成环境/" class="title">搭建 Jenkins+Github 集成环境</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T01:41:34.589Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/jenkins/">jenkins</a></p>
+                            <p class="item-title"><a href="/2019/01/03/jenkins 使用 Publish Over SSH 插件实现远程自动部署/" class="title">jenkins 使用 Publish Over SSH 插件实现远程自动部署</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T01:41:34.578Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 Andy</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/04/Jenkins+Maven+SVN 自动部署配置文档/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
